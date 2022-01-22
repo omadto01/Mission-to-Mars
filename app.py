@@ -18,6 +18,7 @@ def scrape():
    mars = mongo.db.mars
    mars_data = scraping.scrape_all()
    mars.update_one({}, {"$set":mars_data}, upsert=True)
+   #mars.insert_one(mars_data)
    return redirect('/', code=302)
 
 # update_one(query_parameter, {"$set": data}, options)
