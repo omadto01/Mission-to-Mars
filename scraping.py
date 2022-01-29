@@ -114,11 +114,13 @@ def hemisphere(browser):
 
     for index in range(len(links)):
     
-         browser.find_by_css('a.product-item h3')[index].click()
-         hemisphere_data = scrape_hemisphere(browser.html)
-         hemisphere_image_urls.append(hemisphere)
+        browser.find_by_css('a.product-item h3')[index].click()
+         
+        hemisphere_data = scrape_hemisphere(browser.html)
+         
+        hemisphere_image_urls.append(hemisphere_data)
     
-         browser.back()
+        browser.back()
     
     return hemisphere_image_urls    
 
@@ -127,14 +129,15 @@ def scrape_hemisphere(html_text):
     hemisphere_soup = soup(html_text, "html.parser")
 
     try:
-        Title_element = hemisphere_soup.find("h2", class_="title").get_text()
-        sample_element = hemisphere_soup.find("a", text="Sample").get("hred")
+        title_element = hemisphere_soup.find("h2", class_="title").get_text()
+        sample_element = hemisphere_soup.find("a", text="Sample").get("href")
 
     except AttributeError:
-        Title_element = None
+        title_element = None
         sample_element = None
+        
     hemispheres_dictionary = {
-        "titles": Title_element,
+        "titles": title_element,
         "img_url": sample_element
         }        
 
