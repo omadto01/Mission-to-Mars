@@ -18,7 +18,7 @@ def scrape():
     mars = mongo.db.mars
     mars_data = scraping.scrape_all()
     print(mars_data)
-    #mars.insert_one(mars_data) #.update_one({}, {"$set":mars_data}, upsert=True) #mars.insert_one(mars_data)
+    mars.insert_one(mars_data) #.update_one({}, {"$set":mars_data}, upsert=True) #mars.insert_one(mars_data)
     return redirect("/")
 
 if __name__ == "__main__":
